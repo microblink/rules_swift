@@ -82,7 +82,9 @@ def _make_swift_symbol_graph_aspect_impl(
                 ctx = aspect_ctx,
                 swift_toolchain = swift_toolchain,
                 requested_features = aspect_ctx.features,
-                unsupported_features = aspect_ctx.disabled_features,
+                unsupported_features = aspect_ctx.disabled_features + [
+                    "swift.enable_cpp23_interop",
+                ],
             )
 
             swift_info = target[SwiftInfo]
