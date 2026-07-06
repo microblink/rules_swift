@@ -49,6 +49,16 @@ def cc_library_test_suite(name, tags = []):
         tags = all_tags,
     )
 
+    # Verify that Swift can import a `cc_library` that ignores warnings in headers coming
+    # from external dependencies.
+    build_test(
+        name = "{}_swift_imports_cc_library_with_external_dependencies".format(name),
+        targets = [
+            "//test/fixtures/cc_library:import_external_cpp_dependency",
+        ],
+        tags = all_tags,
+    )
+
     native.test_suite(
         name = name,
         tags = all_tags,
